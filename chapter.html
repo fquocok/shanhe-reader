@@ -22,9 +22,17 @@
 </head>
 <body class="page-chapter">
   <header class="topbar">
-    <a class="bar-btn" href="./index.html">目錄</a>
-    <div id="chapter-name" class="chapter-name">山河武俠</div>
-    <button type="button" class="bar-btn" id="btn-settings" aria-haspopup="dialog">字級</button>
+    <div class="topbar-row">
+      <a class="bar-btn" href="./index.html">目錄</a>
+      <div class="topbar-center">
+        <div id="chapter-name" class="chapter-name">山河武俠</div>
+        <div id="chapter-progress" class="chapter-progress">　</div>
+      </div>
+      <button type="button" class="bar-btn" id="btn-settings" aria-haspopup="dialog">字級</button>
+    </div>
+    <div id="read-progress-track" class="read-progress-track" role="progressbar" aria-label="本章閱讀進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div id="read-progress-bar" class="read-progress-bar"></div>
+    </div>
   </header>
 
   <p id="status" class="status">載入中…</p>

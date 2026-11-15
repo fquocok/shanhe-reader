@@ -1,5 +1,5 @@
 /* 離線讀已看過的章節；上網時優先取新檔。 */
-var CACHE = "shanhe-v1";
+var CACHE = "shanhe-v2";
 
 self.addEventListener("install", function (event) {
   event.waitUntil(

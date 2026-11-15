@@ -12,6 +12,7 @@
   var FONT_MAX = 28;
   var FONT_DEFAULT = 20;
   var FONT_STEP = 2;
+  var READ_DONE = 0.95;
 
   function safeGet(k) {
     try {
@@ -58,6 +59,27 @@
     if (label) label.textContent = size + " px";
   }
 
+  function clampRatio(r) {
+    if (typeof r !== "number" || !isFinite(r)) return 0;
+    if (r < 0) return 0;
+    if (r > 1) return 1;
+    return r;
+  }
+
+  function persistProgress(p) {
+    safeSet(
+      KEY.progress,
+      JSON.stringify({
+        n: p.n,
+        ratio: clampRatio(p.ratio),
+        title: p.title || "",
+        label: p.label || "",
+        t: p.t || Date.now(),
+        read: p.read || {},
+      })
+    );
+  }
+
   function loadProgress() {
     try {
       var raw = safeGet(KEY.progress);
@@ -65,26 +87,84 @@
       var p = JSON.parse(raw);
       if (!p || !parseInt(p.n, 10)) return null;
       p.n = parseInt(p.n, 10);
+      p.ratio = clampRatio(p.ratio);
+      var hasRead = p.read && typeof p.read === "object" && !Array.isArray(p.read);
+      if (!hasRead) {
+        p.read = {};
+        for (var i = 1; i < p.n; i++) p.read[String(i)] = 1;
+        p.read[String(p.n)] = p.ratio >= READ_DONE ? 1 : p.ratio;
+        persistProgress(p);
+      }
       return p;
     } catch (e) {
       return null;
     }
   }
 
-  function saveProgress(n, title, label) {
+  function readRatioOf(p, n) {
+    if (!p || !p.read) return 0;
+    return clampRatio(p.read[String(n)]);
+  }
+
+  function isFinished(p, n) {
+    return readRatioOf(p, n) >= READ_DONE;
+  }
+
+  function chapterRatio() {
     var el = document.scrollingElement || document.documentElement;
     var max = el.scrollHeight - el.clientHeight;
-    var ratio = max > 0 ? el.scrollTop / max : 0;
-    safeSet(
-      KEY.progress,
-      JSON.stringify({
-        n: n,
-        ratio: ratio,
-        title: title || "",
-        label: label || "",
-        t: Date.now(),
-      })
-    );
+    if (max <= 0) return 1;
+    return clampRatio(el.scrollTop / max);
+  }
+
+  function pct(ratio) {
+    return Math.round(clampRatio(ratio) * 100);
+  }
+
+  function saveProgress(n, title, label) {
+    var prev = loadProgress() || { read: {} };
+    var ratio = chapterRatio();
+    var read = prev.read || {};
+    var prevMax = readRatioOf(prev, n);
+    var stored = Math.max(prevMax, ratio >= READ_DONE ? 1 : ratio);
+    read[String(n)] = stored;
+    var data = {
+      n: n,
+      ratio: ratio,
+      title: title || "",
+      label: label || "",
+      t: Date.now(),
+      read: read,
+    };
+    persistProgress(data);
+    return data;
+  }
+
+  function markChapterFinished(n, title, label) {
+    var prev = loadProgress() || { read: {} };
+    var read = prev.read || {};
+    read[String(n)] = 1;
+    persistProgress({
+      n: n,
+      ratio: prev.n === n ? Math.max(clampRatio(prev.ratio), READ_DONE) : 1,
+      title: title || prev.title || "",
+      label: label || prev.label || "",
+      t: Date.now(),
+      read: read,
+    });
+  }
+
+  function updateChapterProgressUI(n, total, ratio) {
+    var bar = $("read-progress-bar");
+    var track = $("read-progress-track");
+    var label = $("chapter-progress");
+    var p = pct(ratio);
+    if (bar) bar.style.width = p + "%";
+    if (track) track.setAttribute("aria-valuenow", String(p));
+    if (label && n) {
+      var totalText = total > 0 ? String(total) : "—";
+      label.textContent = "第" + n + "章／共" + totalText + "章・本章 " + p + "%";
+    }
   }
 
   function escapeHtml(s) {
@@ -123,14 +203,64 @@
 
   function initIndex() {
     var p = loadProgress();
+    var items = document.querySelectorAll(".batch li[data-n]");
+    var total = items.length;
+    var finished = 0;
+
+    items.forEach(function (li) {
+      var n = parseInt(li.getAttribute("data-n"), 10);
+      var done = isFinished(p, n);
+      if (done) finished += 1;
+      li.classList.toggle("is-read", done);
+      var mark = li.querySelector(".ch-mark");
+      if (mark) mark.textContent = done ? "✓" : "";
+      var current = p && p.n === n;
+      li.classList.toggle("is-current", !!current);
+      var link = li.querySelector("a");
+      if (link) {
+        if (current) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      }
+    });
+
     var card = $("continue-card");
     if (card && p && p.n) {
-      var name = (p.label || "第" + p.n + "章") + (p.title ? "　" + p.title : "");
-      var titleEl = card.querySelector(".card-title");
-      if (titleEl) titleEl.textContent = name;
-      card.setAttribute("href", "./chapter.html?n=" + p.n);
+      var tocItem = $("toc-ch-" + p.n);
+      var tocTitle = tocItem && tocItem.querySelector(".ch-title");
+      var tocLabel = tocItem && tocItem.querySelector(".ch-label");
+      var label = p.label || (tocLabel ? tocLabel.textContent.trim() : "") || "第" + p.n + "章";
+      var title = p.title || (tocTitle ? tocTitle.textContent.trim() : "") || "";
+      var name = label + (title ? "　" + title : "");
+      var titleEl = $("continue-title");
+      if (titleEl) titleEl.textContent = name + "（本章 " + pct(p.ratio) + "%）";
+
+      var href = "./chapter.html?n=" + p.n;
+      var btn = $("continue-btn");
+      if (btn) btn.setAttribute("href", href);
+
+      var overallRatio = total ? finished / total : 0;
+      if (p.ratio < READ_DONE && tocItem) {
+        overallRatio = total ? (finished + p.ratio) / total : 0;
+      }
+      var overallPct = Math.round(overallRatio * 100);
+      var meta = $("overall-meta");
+      if (meta) meta.textContent = "已讀 " + finished + "／共 " + total + " 章";
+      var fill = $("overall-fill");
+      if (fill) fill.style.width = overallPct + "%";
+      var track = $("overall-track");
+      if (track) track.setAttribute("aria-valuenow", String(overallPct));
+
       card.hidden = false;
+
+      if (tocItem) {
+        var details = tocItem.closest("details");
+        if (details) details.open = true;
+        requestAnimationFrame(function () {
+          tocItem.scrollIntoView({ block: "center", behavior: "auto" });
+        });
+      }
     }
+
     var hint = $("homescreen-hint");
     if (hint) {
       var standalone =
@@ -183,6 +313,7 @@
       .then(function (pair) {
         var index = pair[0];
         var ch = pair[1];
+        var total = (index.chapters && index.chapters.length) || 0;
         var heading = ch.heading || (ch.label || "") + (ch.title ? "　" + ch.title : "");
         document.title = heading + " · 山河武俠";
         if (nameEl) nameEl.textContent = heading;
@@ -206,21 +337,26 @@
           if (!el) return;
           el.setAttribute("href", "./chapter.html?n=" + (n + 1));
           setDisabled(el, !hasNext);
+          el.addEventListener("click", function () {
+            markChapterFinished(n, ch.title, ch.label);
+          });
         });
 
-        var p = loadProgress();
-        if (p && p.n === n && typeof p.ratio === "number" && p.ratio > 0) {
+        var saved = loadProgress();
+        if (saved && saved.n === n && typeof saved.ratio === "number" && saved.ratio > 0) {
           requestAnimationFrame(function () {
             requestAnimationFrame(function () {
               var el = document.scrollingElement || document.documentElement;
               var max = el.scrollHeight - el.clientHeight;
-              if (max > 0) el.scrollTop = max * p.ratio;
+              if (max > 0) el.scrollTop = max * saved.ratio;
+              updateChapterProgressUI(n, total, chapterRatio());
             });
           });
         }
 
         var save = function () {
           saveProgress(n, ch.title, ch.label);
+          updateChapterProgressUI(n, total, chapterRatio());
         };
         save();
         var ticking = false;
@@ -248,6 +384,7 @@
           if (ev.key === "ArrowLeft" && hasPrev) {
             location.href = "./chapter.html?n=" + (n - 1);
           } else if (ev.key === "ArrowRight" && hasNext) {
+            markChapterFinished(n, ch.title, ch.label);
             location.href = "./chapter.html?n=" + (n + 1);
           }
         });
