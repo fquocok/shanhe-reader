@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="sepia">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3e6c8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="山河武俠">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>閱讀 · 山河武俠</title>
+  <script>
+    try {
+      var t = localStorage.getItem("shanhe.theme");
+      if (t) document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  </script>
+</head>
+<body class="page-chapter">
+  <header class="topbar">
+    <a class="bar-btn" href="./index.html">目錄</a>
+    <div id="chapter-name" class="chapter-name">山河武俠</div>
+    <button type="button" class="bar-btn" id="btn-settings" aria-haspopup="dialog">字級</button>
+  </header>
+
+  <p id="status" class="status">載入中…</p>
+  <article id="article" class="article"></article>
+
+  <nav class="bottombar" aria-label="章節導覽">
+    <a class="bar-btn" id="btn-prev-bottom" href="#">上一章</a>
+    <a class="bar-btn" href="./index.html">目錄</a>
+    <a class="bar-btn" id="btn-next-bottom" href="#">下一章</a>
+  </nav>
+
+  <div id="panel-backdrop" class="panel-backdrop" hidden></div>
+  <div id="settings" class="settings" hidden role="dialog" aria-label="閱讀設定">
+    <h2>閱讀設定</h2>
+    <div class="row">
+      <div class="label">主題</div>
+      <div class="choices">
+        <button type="button" class="choice" data-theme-choice="sepia">紙色</button>
+        <button type="button" class="choice" data-theme-choice="light">淺色</button>
+        <button type="button" class="choice" data-theme-choice="dark">深色</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="label">字級</div>
+      <div class="font-ctrl">
+        <button type="button" id="font-minus" aria-label="縮小字級">A−</button>
+        <span id="font-val" class="font-val">20 px</span>
+        <button type="button" id="font-plus" aria-label="放大字級">A＋</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
