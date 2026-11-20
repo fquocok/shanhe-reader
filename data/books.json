@@ -1,0 +1,28 @@
+{
+  "books": [
+    {
+      "id": "shanhe",
+      "title": "山河武俠",
+      "author": "Yuki",
+      "subtitle": "武俠喜劇連載",
+      "status": "serial",
+      "count": 240,
+      "toc": "./toc.html",
+      "chapter": "./chapter.html",
+      "data": "./data/chapters.json",
+      "progressKey": "shanhe.progress"
+    },
+    {
+      "id": "steampunk",
+      "title": "緹亞・蒸汽朋克新書",
+      "author": "緹亞",
+      "subtitle": "蒸汽朋克・維多利亞風",
+      "status": "coming_soon",
+      "count": 0,
+      "toc": "./steampunk.html",
+      "chapter": "./steampunk-chapter.html",
+      "data": "./data/steampunk/chapters.json",
+      "progressKey": "steampunk.progress"
+    }
+  ]
+}

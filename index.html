@@ -8,12 +8,12 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="山河武俠">
-  <meta name="description" content="《山河武俠》，Yuki 著，武俠喜劇連載。">
+  <meta name="description" content="書架：《山河武俠》（Yuki 著），以及緹亞即將連載的蒸汽朋克新書。">
   <link rel="manifest" href="./manifest.json">
   <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
   <link rel="stylesheet" href="./css/style.css">
-  <title>山河武俠</title>
+  <title>書架</title>
   <script>
     try {
       var t = localStorage.getItem("shanhe.theme");
@@ -21,443 +21,49 @@
     } catch (e) {}
   </script>
 </head>
-<body class="page-index">
+<body class="page-shelf">
   <header class="hero">
-    <div class="seal">山河</div>
-    <h1>山河武俠</h1>
-    <p class="author">Yuki　武俠喜劇連載</p>
+    <div class="seal">書架</div>
+    <h1>書架</h1>
+    <p class="author">選擇要讀的書</p>
   </header>
 
-  <div class="cards">
-    <div id="continue-card" class="card continue-card" hidden>
-      <span class="kicker">目前看到</span>
-      <span id="continue-title" class="card-title"></span>
-      <div class="overall">
-        <div id="overall-meta" class="overall-meta"></div>
-        <div id="overall-track" class="overall-track" role="progressbar" aria-label="全書閱讀進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-          <div id="overall-fill" class="overall-fill"></div>
+  <div class="shelf">
+    <article class="book" data-book="shanhe" data-count="240">
+      <a class="book-main" href="./toc.html">
+        <span class="book-cover" aria-hidden="true">山河</span>
+        <span class="book-info">
+          <span class="book-title">山河武俠</span>
+          <span class="book-author">Yuki　武俠喜劇連載</span>
+          <span class="book-meta">目前刊載 240 章</span>
+        </span>
+      </a>
+      <div id="shanhe-continue" class="book-progress" hidden>
+        <span class="kicker">目前看到</span>
+        <span id="continue-title" class="card-title"></span>
+        <div class="overall">
+          <div id="overall-meta" class="overall-meta"></div>
+          <div id="overall-track" class="overall-track" role="progressbar" aria-label="全書閱讀進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div id="overall-fill" class="overall-fill"></div>
+          </div>
         </div>
+        <a id="continue-btn" class="continue-btn" href="./chapter.html">繼續閱讀</a>
       </div>
-      <a id="continue-btn" class="continue-btn" href="./chapter.html">繼續閱讀</a>
-    </div>
-    <a class="card" href="./chapter.html?n=240">
-      <span class="kicker">最新章節</span>
-      <span class="card-title">第二百四十章　早了六天</span>
-    </a>
+    </article>
+
+    <article class="book is-soon" data-book="steampunk" aria-disabled="true">
+      <div class="book-main">
+        <span class="book-cover" aria-hidden="true">新書</span>
+        <span class="book-info">
+          <span class="book-title">緹亞・蒸汽朋克新書</span>
+          <span class="book-author">緹亞　蒸汽朋克・維多利亞風</span>
+          <span class="book-badge">即將連載</span>
+        </span>
+      </div>
+    </article>
   </div>
 
-  <p class="meta">目前刊載至第二百四十章，共 240 章</p>
   <p id="homescreen-hint" class="hint">用手機瀏覽器打開後，可加入主畫面，下次就能像 App 一樣點開讀。</p>
-
-  <section class="batch" id="batch-1">
-  <details open>
-    <summary>第 1－10 章</summary>
-    <ol start="1">
-      <li id="toc-ch-1" data-n="1"><a href="./chapter.html?n=1"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一章</span><span class="ch-title">大夜班的盡頭是一碗粥</span></a></li>
-      <li id="toc-ch-2" data-n="2"><a href="./chapter.html?n=2"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二章</span><span class="ch-title">粥立不住筷子，經卻立在腦子裡</span></a></li>
-      <li id="toc-ch-3" data-n="3"><a href="./chapter.html?n=3"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第三章</span><span class="ch-title">家當盤點，一籃螺螄</span></a></li>
-      <li id="toc-ch-4" data-n="4"><a href="./chapter.html?n=4"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第四章</span><span class="ch-title">半斤，原來真的是八兩</span></a></li>
-      <li id="toc-ch-5" data-n="5"><a href="./chapter.html?n=5"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第五章</span><span class="ch-title">屋頂的報價單</span></a></li>
-      <li id="toc-ch-6" data-n="6"><a href="./chapter.html?n=6"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第六章</span><span class="ch-title">一件不記價的襖</span></a></li>
-      <li id="toc-ch-7" data-n="7"><a href="./chapter.html?n=7"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第七章</span><span class="ch-title">號碼牌與翻了面的第七號</span></a></li>
-      <li id="toc-ch-8" data-n="8"><a href="./chapter.html?n=8"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第八章</span><span class="ch-title">船吃水，碼子裡有算盤</span></a></li>
-      <li id="toc-ch-9" data-n="9"><a href="./chapter.html?n=9"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第九章</span><span class="ch-title">雨天公休，與一枚不作數的錢</span></a></li>
-      <li id="toc-ch-10" data-n="10"><a href="./chapter.html?n=10"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第十章</span><span class="ch-title">貨到付款，收件人請裝傻</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-11">
-  <details open>
-    <summary>第 11－20 章</summary>
-    <ol start="11">
-      <li id="toc-ch-11" data-n="11"><a href="./chapter.html?n=11"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第十一章</span><span class="ch-title">平斗與尖斗</span></a></li>
-      <li id="toc-ch-12" data-n="12"><a href="./chapter.html?n=12"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第十二章</span><span class="ch-title">分期零利率</span></a></li>
-      <li id="toc-ch-13" data-n="13"><a href="./chapter.html?n=13"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第十三章</span><span class="ch-title">一個灶，三家煙</span></a></li>
-      <li id="toc-ch-14" data-n="14"><a href="./chapter.html?n=14"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第十四章</span><span class="ch-title">大叔掉了一本書</span></a></li>
-      <li id="toc-ch-15" data-n="15"><a href="./chapter.html?n=15"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第十五章</span><span class="ch-title">物流公司，武裝版</span></a></li>
-      <li id="toc-ch-16" data-n="16"><a href="./chapter.html?n=16"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第十六章</span><span class="ch-title">一包不是麵的麵</span></a></li>
-      <li id="toc-ch-17" data-n="17"><a href="./chapter.html?n=17"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第十七章</span><span class="ch-title">年終盤點</span></a></li>
-      <li id="toc-ch-18" data-n="18"><a href="./chapter.html?n=18"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第十八章</span><span class="ch-title">守歲的一碗湯圓</span></a></li>
-      <li id="toc-ch-19" data-n="19"><a href="./chapter.html?n=19"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第十九章</span><span class="ch-title">初一的粥，立了三息</span></a></li>
-      <li id="toc-ch-20" data-n="20"><a href="./chapter.html?n=20"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二十章</span><span class="ch-title">元宵的燈謎，答案不能是我</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-21">
-  <details open>
-    <summary>第 21－30 章</summary>
-    <ol start="21">
-      <li id="toc-ch-21" data-n="21"><a href="./chapter.html?n=21"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二十一章</span><span class="ch-title">銀子不叫錢</span></a></li>
-      <li id="toc-ch-22" data-n="22"><a href="./chapter.html?n=22"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二十二章</span><span class="ch-title">舊管新收，開除實在</span></a></li>
-      <li id="toc-ch-23" data-n="23"><a href="./chapter.html?n=23"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二十三章</span><span class="ch-title">袖子放下一折</span></a></li>
-      <li id="toc-ch-24" data-n="24"><a href="./chapter.html?n=24"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二十四章</span><span class="ch-title">秤砣是空的</span></a></li>
-      <li id="toc-ch-25" data-n="25"><a href="./chapter.html?n=25"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二十五章</span><span class="ch-title">少東家來稽核</span></a></li>
-      <li id="toc-ch-26" data-n="26"><a href="./chapter.html?n=26"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二十六章</span><span class="ch-title">兩口鏊子</span></a></li>
-      <li id="toc-ch-27" data-n="27"><a href="./chapter.html?n=27"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二十七章</span><span class="ch-title">雞蛋也分大小</span></a></li>
-      <li id="toc-ch-28" data-n="28"><a href="./chapter.html?n=28"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二十八章</span><span class="ch-title">清明的竹籃</span></a></li>
-      <li id="toc-ch-29" data-n="29"><a href="./chapter.html?n=29"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二十九章</span><span class="ch-title">不叫就不去</span></a></li>
-      <li id="toc-ch-30" data-n="30"><a href="./chapter.html?n=30"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第三十章</span><span class="ch-title">宋二掌櫃的小帳本</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-31">
-  <details open>
-    <summary>第 31－40 章</summary>
-    <ol start="31">
-      <li id="toc-ch-31" data-n="31"><a href="./chapter.html?n=31"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第三十一章</span><span class="ch-title">立夏秤人</span></a></li>
-      <li id="toc-ch-32" data-n="32"><a href="./chapter.html?n=32"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第三十二章</span><span class="ch-title">粥，立了一息</span></a></li>
-      <li id="toc-ch-33" data-n="33"><a href="./chapter.html?n=33"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第三十三章</span><span class="ch-title">三碗乾飯的人</span></a></li>
-      <li id="toc-ch-34" data-n="34"><a href="./chapter.html?n=34"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第三十四章</span><span class="ch-title">端午與梅雨</span></a></li>
-      <li id="toc-ch-35" data-n="35"><a href="./chapter.html?n=35"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第三十五章</span><span class="ch-title">算日子</span></a></li>
-      <li id="toc-ch-36" data-n="36"><a href="./chapter.html?n=36"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第三十六章</span><span class="ch-title">陳米上了船</span></a></li>
-      <li id="toc-ch-37" data-n="37"><a href="./chapter.html?n=37"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第三十七章</span><span class="ch-title">立了一年的筷子</span></a></li>
-      <li id="toc-ch-38" data-n="38"><a href="./chapter.html?n=38"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第三十八章</span><span class="ch-title">上游出事了</span></a></li>
-      <li id="toc-ch-39" data-n="39"><a href="./chapter.html?n=39"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第三十九章</span><span class="ch-title">第二個年</span></a></li>
-      <li id="toc-ch-40" data-n="40"><a href="./chapter.html?n=40"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第四十章</span><span class="ch-title">廟門</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-41">
-  <details open>
-    <summary>第 41－50 章</summary>
-    <ol start="41">
-      <li id="toc-ch-41" data-n="41"><a href="./chapter.html?n=41"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第四十一章</span><span class="ch-title">山路與雜役</span></a></li>
-      <li id="toc-ch-42" data-n="42"><a href="./chapter.html?n=42"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第四十二章</span><span class="ch-title">第一篇的門檻</span></a></li>
-      <li id="toc-ch-43" data-n="43"><a href="./chapter.html?n=43"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第四十三章</span><span class="ch-title">江上的回聲</span></a></li>
-      <li id="toc-ch-44" data-n="44"><a href="./chapter.html?n=44"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第四十四章</span><span class="ch-title">袖子與回信</span></a></li>
-      <li id="toc-ch-45" data-n="45"><a href="./chapter.html?n=45"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第四十五章</span><span class="ch-title">爐號與十日</span></a></li>
-      <li id="toc-ch-46" data-n="46"><a href="./chapter.html?n=46"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第四十六章</span><span class="ch-title">三碗之外</span></a></li>
-      <li id="toc-ch-47" data-n="47"><a href="./chapter.html?n=47"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第四十七章</span><span class="ch-title">府城風</span></a></li>
-      <li id="toc-ch-48" data-n="48"><a href="./chapter.html?n=48"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第四十八章</span><span class="ch-title">拔號</span></a></li>
-      <li id="toc-ch-49" data-n="49"><a href="./chapter.html?n=49"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第四十九章</span><span class="ch-title">上弦</span></a></li>
-      <li id="toc-ch-50" data-n="50"><a href="./chapter.html?n=50"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第五十章</span><span class="ch-title">短筆</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-51">
-  <details open>
-    <summary>第 51－60 章</summary>
-    <ol start="51">
-      <li id="toc-ch-51" data-n="51"><a href="./chapter.html?n=51"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第五十一章</span><span class="ch-title">鹿鳴居的客</span></a></li>
-      <li id="toc-ch-52" data-n="52"><a href="./chapter.html?n=52"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第五十二章</span><span class="ch-title">空倉文書</span></a></li>
-      <li id="toc-ch-53" data-n="53"><a href="./chapter.html?n=53"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第五十三章</span><span class="ch-title">先掃地</span></a></li>
-      <li id="toc-ch-54" data-n="54"><a href="./chapter.html?n=54"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第五十四章</span><span class="ch-title">對帳的風</span></a></li>
-      <li id="toc-ch-55" data-n="55"><a href="./chapter.html?n=55"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第五十五章</span><span class="ch-title">鞘鐵到門</span></a></li>
-      <li id="toc-ch-56" data-n="56"><a href="./chapter.html?n=56"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第五十六章</span><span class="ch-title">茶棚淺青</span></a></li>
-      <li id="toc-ch-57" data-n="57"><a href="./chapter.html?n=57"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第五十七章</span><span class="ch-title">水線</span></a></li>
-      <li id="toc-ch-58" data-n="58"><a href="./chapter.html?n=58"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第五十八章</span><span class="ch-title">收步</span></a></li>
-      <li id="toc-ch-59" data-n="59"><a href="./chapter.html?n=59"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第五十九章</span><span class="ch-title">上游岔口</span></a></li>
-      <li id="toc-ch-60" data-n="60"><a href="./chapter.html?n=60"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第六十章</span><span class="ch-title">行祠遠香</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-61">
-  <details open>
-    <summary>第 61－70 章</summary>
-    <ol start="61">
-      <li id="toc-ch-61" data-n="61"><a href="./chapter.html?n=61"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第六十一章</span><span class="ch-title">三老的帖</span></a></li>
-      <li id="toc-ch-62" data-n="62"><a href="./chapter.html?n=62"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第六十二章</span><span class="ch-title">一肩</span></a></li>
-      <li id="toc-ch-63" data-n="63"><a href="./chapter.html?n=63"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第六十三章</span><span class="ch-title">兩件併一趟</span></a></li>
-      <li id="toc-ch-64" data-n="64"><a href="./chapter.html?n=64"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第六十四章</span><span class="ch-title">石板上的兩捆</span></a></li>
-      <li id="toc-ch-65" data-n="65"><a href="./chapter.html?n=65"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第六十五章</span><span class="ch-title">招貼的另一半</span></a></li>
-      <li id="toc-ch-66" data-n="66"><a href="./chapter.html?n=66"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第六十六章</span><span class="ch-title">別人加的那半碗</span></a></li>
-      <li id="toc-ch-67" data-n="67"><a href="./chapter.html?n=67"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第六十七章</span><span class="ch-title">封條的味</span></a></li>
-      <li id="toc-ch-68" data-n="68"><a href="./chapter.html?n=68"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第六十八章</span><span class="ch-title">灘上的縴</span></a></li>
-      <li id="toc-ch-69" data-n="69"><a href="./chapter.html?n=69"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第六十九章</span><span class="ch-title">第三棚的車</span></a></li>
-      <li id="toc-ch-70" data-n="70"><a href="./chapter.html?n=70"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第七十章</span><span class="ch-title">對上了</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-71">
-  <details open>
-    <summary>第 71－80 章</summary>
-    <ol start="71">
-      <li id="toc-ch-71" data-n="71"><a href="./chapter.html?n=71"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第七十一章</span><span class="ch-title">雨後含水</span></a></li>
-      <li id="toc-ch-72" data-n="72"><a href="./chapter.html?n=72"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第七十二章</span><span class="ch-title">側院還有人問</span></a></li>
-      <li id="toc-ch-73" data-n="73"><a href="./chapter.html?n=73"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第七十三章</span><span class="ch-title">伏天的灶</span></a></li>
-      <li id="toc-ch-74" data-n="74"><a href="./chapter.html?n=74"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第七十四章</span><span class="ch-title">爐裡的備料</span></a></li>
-      <li id="toc-ch-75" data-n="75"><a href="./chapter.html?n=75"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第七十五章</span><span class="ch-title">鎮上的口碑</span></a></li>
-      <li id="toc-ch-76" data-n="76"><a href="./chapter.html?n=76"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第七十六章</span><span class="ch-title">七月的船期</span></a></li>
-      <li id="toc-ch-77" data-n="77"><a href="./chapter.html?n=77"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第七十七章</span><span class="ch-title">油布與麥麩</span></a></li>
-      <li id="toc-ch-78" data-n="78"><a href="./chapter.html?n=78"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第七十八章</span><span class="ch-title">叔上山</span></a></li>
-      <li id="toc-ch-79" data-n="79"><a href="./chapter.html?n=79"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第七十九章</span><span class="ch-title">青禾渡的信</span></a></li>
-      <li id="toc-ch-80" data-n="80"><a href="./chapter.html?n=80"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第八十章</span><span class="ch-title">側院的裂縫</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-81">
-  <details open>
-    <summary>第 81－90 章</summary>
-    <ol start="81">
-      <li id="toc-ch-81" data-n="81"><a href="./chapter.html?n=81"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第八十一章</span><span class="ch-title">伏天的炭</span></a></li>
-      <li id="toc-ch-82" data-n="82"><a href="./chapter.html?n=82"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第八十二章</span><span class="ch-title">七月的賬</span></a></li>
-      <li id="toc-ch-83" data-n="83"><a href="./chapter.html?n=83"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第八十三章</span><span class="ch-title">鞘室的尺寸</span></a></li>
-      <li id="toc-ch-84" data-n="84"><a href="./chapter.html?n=84"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第八十四章</span><span class="ch-title">阿貴的路徑</span></a></li>
-      <li id="toc-ch-85" data-n="85"><a href="./chapter.html?n=85"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第八十五章</span><span class="ch-title">山下的犁</span></a></li>
-      <li id="toc-ch-86" data-n="86"><a href="./chapter.html?n=86"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第八十六章</span><span class="ch-title">八月的窗</span></a></li>
-      <li id="toc-ch-87" data-n="87"><a href="./chapter.html?n=87"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第八十七章</span><span class="ch-title">集鎮的熱</span></a></li>
-      <li id="toc-ch-88" data-n="88"><a href="./chapter.html?n=88"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第八十八章</span><span class="ch-title">程石的一瞥</span></a></li>
-      <li id="toc-ch-89" data-n="89"><a href="./chapter.html?n=89"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第八十九章</span><span class="ch-title">河上的風</span></a></li>
-      <li id="toc-ch-90" data-n="90"><a href="./chapter.html?n=90"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第九十章</span><span class="ch-title">跟上的船</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-91">
-  <details open>
-    <summary>第 91－100 章</summary>
-    <ol start="91">
-      <li id="toc-ch-91" data-n="91"><a href="./chapter.html?n=91"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第九十一章</span><span class="ch-title">中秋前</span></a></li>
-      <li id="toc-ch-92" data-n="92"><a href="./chapter.html?n=92"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第九十二章</span><span class="ch-title">月底那一窯</span></a></li>
-      <li id="toc-ch-93" data-n="93"><a href="./chapter.html?n=93"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第九十三章</span><span class="ch-title">捎回去的話</span></a></li>
-      <li id="toc-ch-94" data-n="94"><a href="./chapter.html?n=94"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第九十四章</span><span class="ch-title">第一場雨</span></a></li>
-      <li id="toc-ch-95" data-n="95"><a href="./chapter.html?n=95"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第九十五章</span><span class="ch-title">鞘的磨口</span></a></li>
-      <li id="toc-ch-96" data-n="96"><a href="./chapter.html?n=96"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第九十六章</span><span class="ch-title">灣口的六捆</span></a></li>
-      <li id="toc-ch-97" data-n="97"><a href="./chapter.html?n=97"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第九十七章</span><span class="ch-title">秋風與冊</span></a></li>
-      <li id="toc-ch-98" data-n="98"><a href="./chapter.html?n=98"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第九十八章</span><span class="ch-title">九月的窗</span></a></li>
-      <li id="toc-ch-99" data-n="99"><a href="./chapter.html?n=99"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第九十九章</span><span class="ch-title">冬鞘的刀</span></a></li>
-      <li id="toc-ch-100" data-n="100"><a href="./chapter.html?n=100"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百章</span><span class="ch-title">後嶺的回音</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-101">
-  <details open>
-    <summary>第 101－110 章</summary>
-    <ol start="101">
-      <li id="toc-ch-101" data-n="101"><a href="./chapter.html?n=101"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百零一章</span><span class="ch-title">秋糧的船</span></a></li>
-      <li id="toc-ch-102" data-n="102"><a href="./chapter.html?n=102"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百零二章</span><span class="ch-title">九月的賬</span></a></li>
-      <li id="toc-ch-103" data-n="103"><a href="./chapter.html?n=103"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百零三章</span><span class="ch-title">寒露前</span></a></li>
-      <li id="toc-ch-104" data-n="104"><a href="./chapter.html?n=104"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百零四章</span><span class="ch-title">冬炭的單</span></a></li>
-      <li id="toc-ch-105" data-n="105"><a href="./chapter.html?n=105"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百零五章</span><span class="ch-title">縫袋口的針</span></a></li>
-      <li id="toc-ch-106" data-n="106"><a href="./chapter.html?n=106"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百零六章</span><span class="ch-title">霜前的皮</span></a></li>
-      <li id="toc-ch-107" data-n="107"><a href="./chapter.html?n=107"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百零七章</span><span class="ch-title">站樁的冷</span></a></li>
-      <li id="toc-ch-108" data-n="108"><a href="./chapter.html?n=108"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百零八章</span><span class="ch-title">十月的窗</span></a></li>
-      <li id="toc-ch-109" data-n="109"><a href="./chapter.html?n=109"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百零九章</span><span class="ch-title">冬炭頭一窯</span></a></li>
-      <li id="toc-ch-110" data-n="110"><a href="./chapter.html?n=110"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百一十章</span><span class="ch-title">冬一的鞘</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-111">
-  <details open>
-    <summary>第 111－120 章</summary>
-    <ol start="111">
-      <li id="toc-ch-111" data-n="111"><a href="./chapter.html?n=111"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百一十一章</span><span class="ch-title">舊刀的去處</span></a></li>
-      <li id="toc-ch-112" data-n="112"><a href="./chapter.html?n=112"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百一十二章</span><span class="ch-title">十一月的井</span></a></li>
-      <li id="toc-ch-113" data-n="113"><a href="./chapter.html?n=113"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百一十三章</span><span class="ch-title">冬炭二窯</span></a></li>
-      <li id="toc-ch-114" data-n="114"><a href="./chapter.html?n=114"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百一十四章</span><span class="ch-title">大一號的襪</span></a></li>
-      <li id="toc-ch-115" data-n="115"><a href="./chapter.html?n=115"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百一十五章</span><span class="ch-title">年前的差</span></a></li>
-      <li id="toc-ch-116" data-n="116"><a href="./chapter.html?n=116"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百一十六章</span><span class="ch-title">十一月的窗</span></a></li>
-      <li id="toc-ch-117" data-n="117"><a href="./chapter.html?n=117"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百一十七章</span><span class="ch-title">臘月前的窯</span></a></li>
-      <li id="toc-ch-118" data-n="118"><a href="./chapter.html?n=118"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百一十八章</span><span class="ch-title">冬五的刀</span></a></li>
-      <li id="toc-ch-119" data-n="119"><a href="./chapter.html?n=119"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百一十九章</span><span class="ch-title">大灶的年</span></a></li>
-      <li id="toc-ch-120" data-n="120"><a href="./chapter.html?n=120"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百二十章</span><span class="ch-title">霍平的冬</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-121">
-  <details open>
-    <summary>第 121－130 章</summary>
-    <ol start="121">
-      <li id="toc-ch-121" data-n="121"><a href="./chapter.html?n=121"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百二十一章</span><span class="ch-title">算不完的那一行</span></a></li>
-      <li id="toc-ch-122" data-n="122"><a href="./chapter.html?n=122"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百二十二章</span><span class="ch-title">山門的福</span></a></li>
-      <li id="toc-ch-123" data-n="123"><a href="./chapter.html?n=123"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百二十三章</span><span class="ch-title">除夕的山</span></a></li>
-      <li id="toc-ch-124" data-n="124"><a href="./chapter.html?n=124"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百二十四章</span><span class="ch-title">第五行</span></a></li>
-      <li id="toc-ch-125" data-n="125"><a href="./chapter.html?n=125"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百二十五章</span><span class="ch-title">補天的餅</span></a></li>
-      <li id="toc-ch-126" data-n="126"><a href="./chapter.html?n=126"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百二十六章</span><span class="ch-title">新人的三碗</span></a></li>
-      <li id="toc-ch-127" data-n="127"><a href="./chapter.html?n=127"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百二十七章</span><span class="ch-title">小米的十天</span></a></li>
-      <li id="toc-ch-128" data-n="128"><a href="./chapter.html?n=128"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百二十八章</span><span class="ch-title">河開了</span></a></li>
-      <li id="toc-ch-129" data-n="129"><a href="./chapter.html?n=129"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百二十九章</span><span class="ch-title">開春第一窯</span></a></li>
-      <li id="toc-ch-130" data-n="130"><a href="./chapter.html?n=130"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百三十章</span><span class="ch-title">周年</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-131">
-  <details open>
-    <summary>第 131－140 章</summary>
-    <ol start="131">
-      <li id="toc-ch-131" data-n="131"><a href="./chapter.html?n=131"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百三十一章</span><span class="ch-title">頭班船</span></a></li>
-      <li id="toc-ch-132" data-n="132"><a href="./chapter.html?n=132"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百三十二章</span><span class="ch-title">孟家的信</span></a></li>
-      <li id="toc-ch-133" data-n="133"><a href="./chapter.html?n=133"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百三十三章</span><span class="ch-title">冬八的手</span></a></li>
-      <li id="toc-ch-134" data-n="134"><a href="./chapter.html?n=134"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百三十四章</span><span class="ch-title">清明前</span></a></li>
-      <li id="toc-ch-135" data-n="135"><a href="./chapter.html?n=135"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百三十五章</span><span class="ch-title">清明</span></a></li>
-      <li id="toc-ch-136" data-n="136"><a href="./chapter.html?n=136"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百三十六章</span><span class="ch-title">一炷香</span></a></li>
-      <li id="toc-ch-137" data-n="137"><a href="./chapter.html?n=137"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百三十七章</span><span class="ch-title">孟家的回音</span></a></li>
-      <li id="toc-ch-138" data-n="138"><a href="./chapter.html?n=138"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百三十八章</span><span class="ch-title">她的一炷香</span></a></li>
-      <li id="toc-ch-139" data-n="139"><a href="./chapter.html?n=139"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百三十九章</span><span class="ch-title">春雨的屋頂</span></a></li>
-      <li id="toc-ch-140" data-n="140"><a href="./chapter.html?n=140"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百四十章</span><span class="ch-title">府城的包</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-141">
-  <details open>
-    <summary>第 141－150 章</summary>
-    <ol start="141">
-      <li id="toc-ch-141" data-n="141"><a href="./chapter.html?n=141"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百四十一章</span><span class="ch-title">第五行</span></a></li>
-      <li id="toc-ch-142" data-n="142"><a href="./chapter.html?n=142"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百四十二章</span><span class="ch-title">春炭二窯</span></a></li>
-      <li id="toc-ch-143" data-n="143"><a href="./chapter.html?n=143"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百四十三章</span><span class="ch-title">立夏秤人</span></a></li>
-      <li id="toc-ch-144" data-n="144"><a href="./chapter.html?n=144"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百四十四章</span><span class="ch-title">上游的第二趟</span></a></li>
-      <li id="toc-ch-145" data-n="145"><a href="./chapter.html?n=145"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百四十五章</span><span class="ch-title">端午前</span></a></li>
-      <li id="toc-ch-146" data-n="146"><a href="./chapter.html?n=146"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百四十六章</span><span class="ch-title">端午</span></a></li>
-      <li id="toc-ch-147" data-n="147"><a href="./chapter.html?n=147"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百四十七章</span><span class="ch-title">夏單</span></a></li>
-      <li id="toc-ch-148" data-n="148"><a href="./chapter.html?n=148"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百四十八章</span><span class="ch-title">灣口的夏差</span></a></li>
-      <li id="toc-ch-149" data-n="149"><a href="./chapter.html?n=149"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百四十九章</span><span class="ch-title">梅雨</span></a></li>
-      <li id="toc-ch-150" data-n="150"><a href="./chapter.html?n=150"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百五十章</span><span class="ch-title">第五的地盤</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-151">
-  <details open>
-    <summary>第 151－160 章</summary>
-    <ol start="151">
-      <li id="toc-ch-151" data-n="151"><a href="./chapter.html?n=151"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百五十一章</span><span class="ch-title">夏至</span></a></li>
-      <li id="toc-ch-152" data-n="152"><a href="./chapter.html?n=152"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百五十二章</span><span class="ch-title">夏窯</span></a></li>
-      <li id="toc-ch-153" data-n="153"><a href="./chapter.html?n=153"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百五十三章</span><span class="ch-title">接褲腳</span></a></li>
-      <li id="toc-ch-154" data-n="154"><a href="./chapter.html?n=154"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百五十四章</span><span class="ch-title">七夕</span></a></li>
-      <li id="toc-ch-155" data-n="155"><a href="./chapter.html?n=155"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百五十五章</span><span class="ch-title">河燈</span></a></li>
-      <li id="toc-ch-156" data-n="156"><a href="./chapter.html?n=156"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百五十六章</span><span class="ch-title">秋差的話</span></a></li>
-      <li id="toc-ch-157" data-n="157"><a href="./chapter.html?n=157"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百五十七章</span><span class="ch-title">秋單</span></a></li>
-      <li id="toc-ch-158" data-n="158"><a href="./chapter.html?n=158"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百五十八章</span><span class="ch-title">天馬的人</span></a></li>
-      <li id="toc-ch-159" data-n="159"><a href="./chapter.html?n=159"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百五十九章</span><span class="ch-title">中秋</span></a></li>
-      <li id="toc-ch-160" data-n="160"><a href="./chapter.html?n=160"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百六十章</span><span class="ch-title">秋炭</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-161">
-  <details open>
-    <summary>第 161－170 章</summary>
-    <ol start="161">
-      <li id="toc-ch-161" data-n="161"><a href="./chapter.html?n=161"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百六十一章</span><span class="ch-title">河落</span></a></li>
-      <li id="toc-ch-162" data-n="162"><a href="./chapter.html?n=162"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百六十二章</span><span class="ch-title">新襖</span></a></li>
-      <li id="toc-ch-163" data-n="163"><a href="./chapter.html?n=163"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百六十三章</span><span class="ch-title">吳的決定</span></a></li>
-      <li id="toc-ch-164" data-n="164"><a href="./chapter.html?n=164"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百六十四章</span><span class="ch-title">立冬</span></a></li>
-      <li id="toc-ch-165" data-n="165"><a href="./chapter.html?n=165"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百六十五章</span><span class="ch-title">出門前</span></a></li>
-      <li id="toc-ch-166" data-n="166"><a href="./chapter.html?n=166"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百六十六章</span><span class="ch-title">下水</span></a></li>
-      <li id="toc-ch-167" data-n="167"><a href="./chapter.html?n=167"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百六十七章</span><span class="ch-title">府城</span></a></li>
-      <li id="toc-ch-168" data-n="168"><a href="./chapter.html?n=168"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百六十八章</span><span class="ch-title">行祠</span></a></li>
-      <li id="toc-ch-169" data-n="169"><a href="./chapter.html?n=169"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百六十九章</span><span class="ch-title">回程</span></a></li>
-      <li id="toc-ch-170" data-n="170"><a href="./chapter.html?n=170"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百七十章</span><span class="ch-title">青禾渡一夜</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-171">
-  <details open>
-    <summary>第 171－180 章</summary>
-    <ol start="171">
-      <li id="toc-ch-171" data-n="171"><a href="./chapter.html?n=171"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百七十一章</span><span class="ch-title">交帳</span></a></li>
-      <li id="toc-ch-172" data-n="172"><a href="./chapter.html?n=172"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百七十二章</span><span class="ch-title">臘月窯</span></a></li>
-      <li id="toc-ch-173" data-n="173"><a href="./chapter.html?n=173"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百七十三章</span><span class="ch-title">山上的第二個年</span></a></li>
-      <li id="toc-ch-174" data-n="174"><a href="./chapter.html?n=174"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百七十四章</span><span class="ch-title">十六年正月</span></a></li>
-      <li id="toc-ch-175" data-n="175"><a href="./chapter.html?n=175"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百七十五章</span><span class="ch-title">給明年的人</span></a></li>
-      <li id="toc-ch-176" data-n="176"><a href="./chapter.html?n=176"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百七十六章</span><span class="ch-title">春單</span></a></li>
-      <li id="toc-ch-177" data-n="177"><a href="./chapter.html?n=177"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百七十七章</span><span class="ch-title">袖口</span></a></li>
-      <li id="toc-ch-178" data-n="178"><a href="./chapter.html?n=178"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百七十八章</span><span class="ch-title">霍安的船</span></a></li>
-      <li id="toc-ch-179" data-n="179"><a href="./chapter.html?n=179"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百七十九章</span><span class="ch-title">冷飯</span></a></li>
-      <li id="toc-ch-180" data-n="180"><a href="./chapter.html?n=180"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百八十章</span><span class="ch-title">一炷香半</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-181">
-  <details open>
-    <summary>第 181－190 章</summary>
-    <ol start="181">
-      <li id="toc-ch-181" data-n="181"><a href="./chapter.html?n=181"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百八十一章</span><span class="ch-title">天馬的人又來</span></a></li>
-      <li id="toc-ch-182" data-n="182"><a href="./chapter.html?n=182"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百八十二章</span><span class="ch-title">三十把</span></a></li>
-      <li id="toc-ch-183" data-n="183"><a href="./chapter.html?n=183"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百八十三章</span><span class="ch-title">曬簿</span></a></li>
-      <li id="toc-ch-184" data-n="184"><a href="./chapter.html?n=184"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百八十四章</span><span class="ch-title">城南的信</span></a></li>
-      <li id="toc-ch-185" data-n="185"><a href="./chapter.html?n=185"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百八十五章</span><span class="ch-title">夜驚</span></a></li>
-      <li id="toc-ch-186" data-n="186"><a href="./chapter.html?n=186"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百八十六章</span><span class="ch-title">月亮跟去年一樣</span></a></li>
-      <li id="toc-ch-187" data-n="187"><a href="./chapter.html?n=187"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百八十七章</span><span class="ch-title">第三年的炭</span></a></li>
-      <li id="toc-ch-188" data-n="188"><a href="./chapter.html?n=188"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百八十八章</span><span class="ch-title">吳管事的第二次決定</span></a></li>
-      <li id="toc-ch-189" data-n="189"><a href="./chapter.html?n=189"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百八十九章</span><span class="ch-title">葉青的鞋</span></a></li>
-      <li id="toc-ch-190" data-n="190"><a href="./chapter.html?n=190"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百九十章</span><span class="ch-title">再下府城</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-191">
-  <details open>
-    <summary>第 191－200 章</summary>
-    <ol start="191">
-      <li id="toc-ch-191" data-n="191"><a href="./chapter.html?n=191"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百九十一章</span><span class="ch-title">城南</span></a></li>
-      <li id="toc-ch-192" data-n="192"><a href="./chapter.html?n=192"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百九十二章</span><span class="ch-title">青禾渡兩夜</span></a></li>
-      <li id="toc-ch-193" data-n="193"><a href="./chapter.html?n=193"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百九十三章</span><span class="ch-title">話也交了</span></a></li>
-      <li id="toc-ch-194" data-n="194"><a href="./chapter.html?n=194"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百九十四章</span><span class="ch-title">雪蓋第三級</span></a></li>
-      <li id="toc-ch-195" data-n="195"><a href="./chapter.html?n=195"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百九十五章</span><span class="ch-title">第三個年</span></a></li>
-      <li id="toc-ch-196" data-n="196"><a href="./chapter.html?n=196"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百九十六章</span><span class="ch-title">十七年正月</span></a></li>
-      <li id="toc-ch-197" data-n="197"><a href="./chapter.html?n=197"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百九十七章</span><span class="ch-title">借出去的人</span></a></li>
-      <li id="toc-ch-198" data-n="198"><a href="./chapter.html?n=198"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百九十八章</span><span class="ch-title">霍安的名字</span></a></li>
-      <li id="toc-ch-199" data-n="199"><a href="./chapter.html?n=199"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第一百九十九章</span><span class="ch-title">門檻</span></a></li>
-      <li id="toc-ch-200" data-n="200"><a href="./chapter.html?n=200"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百章</span><span class="ch-title">炭棚翻頂</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-201">
-  <details open>
-    <summary>第 201－210 章</summary>
-    <ol start="201">
-      <li id="toc-ch-201" data-n="201"><a href="./chapter.html?n=201"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百零一章</span><span class="ch-title">鄧管事又上山</span></a></li>
-      <li id="toc-ch-202" data-n="202"><a href="./chapter.html?n=202"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百零二章</span><span class="ch-title">一炷半以後</span></a></li>
-      <li id="toc-ch-203" data-n="203"><a href="./chapter.html?n=203"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百零三章</span><span class="ch-title">小米的新襖</span></a></li>
-      <li id="toc-ch-204" data-n="204"><a href="./chapter.html?n=204"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百零四章</span><span class="ch-title">背面的一</span></a></li>
-      <li id="toc-ch-205" data-n="205"><a href="./chapter.html?n=205"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百零五章</span><span class="ch-title">第二筆</span></a></li>
-      <li id="toc-ch-206" data-n="206"><a href="./chapter.html?n=206"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百零六章</span><span class="ch-title">石頭的字</span></a></li>
-      <li id="toc-ch-207" data-n="207"><a href="./chapter.html?n=207"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百零七章</span><span class="ch-title">秋前</span></a></li>
-      <li id="toc-ch-208" data-n="208"><a href="./chapter.html?n=208"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百零八章</span><span class="ch-title">第四年的炭</span></a></li>
-      <li id="toc-ch-209" data-n="209"><a href="./chapter.html?n=209"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百零九章</span><span class="ch-title">一個月的包袱</span></a></li>
-      <li id="toc-ch-210" data-n="210"><a href="./chapter.html?n=210"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百一十章</span><span class="ch-title">箱子與名字</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-211">
-  <details open>
-    <summary>第 211－220 章</summary>
-    <ol start="211">
-      <li id="toc-ch-211" data-n="211"><a href="./chapter.html?n=211"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百一十一章</span><span class="ch-title">第三次下府城</span></a></li>
-      <li id="toc-ch-212" data-n="212"><a href="./chapter.html?n=212"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百一十二章</span><span class="ch-title">總舵後屋</span></a></li>
-      <li id="toc-ch-213" data-n="213"><a href="./chapter.html?n=213"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百一十三章</span><span class="ch-title">霍平一個人回去</span></a></li>
-      <li id="toc-ch-214" data-n="214"><a href="./chapter.html?n=214"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百一十四章</span><span class="ch-title">晦氣單</span></a></li>
-      <li id="toc-ch-215" data-n="215"><a href="./chapter.html?n=215"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百一十五章</span><span class="ch-title">城南的四碗</span></a></li>
-      <li id="toc-ch-216" data-n="216"><a href="./chapter.html?n=216"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百一十六章</span><span class="ch-title">行祠掃地</span></a></li>
-      <li id="toc-ch-217" data-n="217"><a href="./chapter.html?n=217"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百一十七章</span><span class="ch-title">臘月二十</span></a></li>
-      <li id="toc-ch-218" data-n="218"><a href="./chapter.html?n=218"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百一十八章</span><span class="ch-title">回來一個（又一個）</span></a></li>
-      <li id="toc-ch-219" data-n="219"><a href="./chapter.html?n=219"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百一十九章</span><span class="ch-title">第四個年</span></a></li>
-      <li id="toc-ch-220" data-n="220"><a href="./chapter.html?n=220"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百二十章</span><span class="ch-title">九個字</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-221">
-  <details open>
-    <summary>第 221－230 章</summary>
-    <ol start="221">
-      <li id="toc-ch-221" data-n="221"><a href="./chapter.html?n=221"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百二十一章</span><span class="ch-title">青禾渡的差事</span></a></li>
-      <li id="toc-ch-222" data-n="222"><a href="./chapter.html?n=222"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百二十二章</span><span class="ch-title">三天</span></a></li>
-      <li id="toc-ch-223" data-n="223"><a href="./chapter.html?n=223"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百二十三章</span><span class="ch-title">堤上</span></a></li>
-      <li id="toc-ch-224" data-n="224"><a href="./chapter.html?n=224"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百二十四章</span><span class="ch-title">回山</span></a></li>
-      <li id="toc-ch-225" data-n="225"><a href="./chapter.html?n=225"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百二十五章</span><span class="ch-title">宋記的船</span></a></li>
-      <li id="toc-ch-226" data-n="226"><a href="./chapter.html?n=226"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百二十六章</span><span class="ch-title">霍安的第一篇</span></a></li>
-      <li id="toc-ch-227" data-n="227"><a href="./chapter.html?n=227"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百二十七章</span><span class="ch-title">新的一面</span></a></li>
-      <li id="toc-ch-228" data-n="228"><a href="./chapter.html?n=228"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百二十八章</span><span class="ch-title">夜驚第三筆</span></a></li>
-      <li id="toc-ch-229" data-n="229"><a href="./chapter.html?n=229"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百二十九章</span><span class="ch-title">吳管事的第三次決定</span></a></li>
-      <li id="toc-ch-230" data-n="230"><a href="./chapter.html?n=230"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百三十章</span><span class="ch-title">她自己說</span></a></li>
-    </ol>
-  </details>
-</section>
-<section class="batch" id="batch-231">
-  <details open>
-    <summary>第 231－240 章</summary>
-    <ol start="231">
-      <li id="toc-ch-231" data-n="231"><a href="./chapter.html?n=231"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百三十一章</span><span class="ch-title">寄身</span></a></li>
-      <li id="toc-ch-232" data-n="232"><a href="./chapter.html?n=232"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百三十二章</span><span class="ch-title">上游的舊倉</span></a></li>
-      <li id="toc-ch-233" data-n="233"><a href="./chapter.html?n=233"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百三十三章</span><span class="ch-title">繞一下</span></a></li>
-      <li id="toc-ch-234" data-n="234"><a href="./chapter.html?n=234"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百三十四章</span><span class="ch-title">先掃地</span></a></li>
-      <li id="toc-ch-235" data-n="235"><a href="./chapter.html?n=235"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百三十五章</span><span class="ch-title">還是，和</span></a></li>
-      <li id="toc-ch-236" data-n="236"><a href="./chapter.html?n=236"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百三十六章</span><span class="ch-title">賣乾糧的</span></a></li>
-      <li id="toc-ch-237" data-n="237"><a href="./chapter.html?n=237"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百三十七章</span><span class="ch-title">月細的那幾天</span></a></li>
-      <li id="toc-ch-238" data-n="238"><a href="./chapter.html?n=238"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百三十八章</span><span class="ch-title">熱的</span></a></li>
-      <li id="toc-ch-239" data-n="239"><a href="./chapter.html?n=239"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百三十九章</span><span class="ch-title">放回去</span></a></li>
-      <li id="toc-ch-240" data-n="240"><a href="./chapter.html?n=240"><span class="ch-mark" aria-hidden="true"></span><span class="ch-label">第二百四十章</span><span class="ch-title">早了六天</span></a></li>
-    </ol>
-  </details>
-</section>
-
 
   <footer class="site-footer">山河武俠　·　Yuki</footer>
   <script src="./js/app.js"></script>

@@ -295,7 +295,7 @@
     if (!n) {
       if (status) {
         status.hidden = false;
-        status.innerHTML = "找不到這一章。<br><a href=\"./index.html\">回到目錄</a>";
+        status.innerHTML = "找不到這一章。<br><a href=\"./toc.html\">回到目錄</a>";
       }
       return;
     }
@@ -393,7 +393,7 @@
         if (status) {
           status.hidden = false;
           status.innerHTML =
-            "這一章尚未公開，或讀取失敗。<br><a href=\"./index.html\">回到目錄</a>";
+            "這一章尚未公開，或讀取失敗。<br><a href=\"./toc.html\">回到目錄</a>";
         }
       });
 
@@ -429,10 +429,80 @@
       });
   }
 
+
+  function initShelf() {
+    var p = loadProgress();
+    var book = document.querySelector('.book[data-book="shanhe"]');
+    var bakedTotal = book ? parseInt(book.getAttribute("data-count"), 10) || 0 : 0;
+    var card = $("shanhe-continue");
+
+    function paint(total, resolved) {
+      if (!card || !p || !p.n) return;
+      var label = p.label || (resolved && resolved.label) || "第" + p.n + "章";
+      var title = p.title || (resolved && resolved.title) || "";
+      var name = label + (title ? "　" + title : "");
+      var titleEl = $("continue-title");
+      if (titleEl) titleEl.textContent = name + "（本章 " + pct(p.ratio) + "%）";
+
+      var btn = $("continue-btn");
+      if (btn) btn.setAttribute("href", "./chapter.html?n=" + p.n);
+
+      var finished = 0;
+      if (total > 0) {
+        for (var i = 1; i <= total; i++) {
+          if (isFinished(p, i)) finished += 1;
+        }
+      }
+      var overallRatio = total ? finished / total : 0;
+      if (p.ratio < READ_DONE && p.n >= 1 && p.n <= total) {
+        overallRatio = total ? (finished + p.ratio) / total : 0;
+      }
+      var overallPct = Math.round(overallRatio * 100);
+      var meta = $("overall-meta");
+      if (meta) meta.textContent = "已讀 " + finished + "／共 " + total + " 章";
+      var fill = $("overall-fill");
+      if (fill) fill.style.width = overallPct + "%";
+      var track = $("overall-track");
+      if (track) track.setAttribute("aria-valuenow", String(overallPct));
+      card.hidden = false;
+    }
+
+    paint(bakedTotal, null);
+
+    fetch("./data/chapters.json")
+      .then(function (r) {
+        if (!r.ok) throw new Error("index");
+        return r.json();
+      })
+      .then(function (index) {
+        var total = (index.chapters && index.chapters.length) || bakedTotal;
+        var resolved = null;
+        if (p && p.n && index.chapters) {
+          for (var i = 0; i < index.chapters.length; i++) {
+            if (index.chapters[i].n === p.n) {
+              resolved = index.chapters[i];
+              break;
+            }
+          }
+        }
+        paint(total, resolved);
+      })
+      .catch(function () {});
+
+    var hint = $("homescreen-hint");
+    if (hint) {
+      var standalone =
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.navigator.standalone === true;
+      hint.hidden = standalone;
+    }
+  }
+
   applyTheme(getTheme());
   applyFont(getFontSize());
 
-  if (document.body.classList.contains("page-index")) initIndex();
+  if (document.body.classList.contains("page-index") || document.body.classList.contains("page-toc")) initIndex();
+  if (document.body.classList.contains("page-shelf")) initShelf();
   if (document.body.classList.contains("page-chapter")) initChapter();
 
   if ("serviceWorker" in navigator) {

@@ -84,10 +84,37 @@ button {
   outline-offset: 2px;
 }
 
-/* ——— 目錄頁 ——— */
+/* ——— 書架／目錄頁 ——— */
 
-.page-index {
+.page-index,
+.page-toc,
+.page-shelf {
   padding-bottom: 3rem;
+}
+
+.shelf-nav {
+  width: min(40rem, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: calc(0.5rem + env(safe-area-inset-top, 0px)) 0 0;
+  font-family: "Noto Sans CJK TC", "Source Han Sans TC", "PingFang TC",
+    "Microsoft JhengHei", system-ui, sans-serif;
+}
+
+.shelf-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+}
+
+.shelf-nav a:active {
+  color: var(--accent);
+}
+
+.page-toc .hero {
+  padding-top: 1.2rem;
 }
 
 .hero {
@@ -340,6 +367,148 @@ button {
   padding: 2rem 1rem 2.5rem;
   font-family: "Noto Sans CJK TC", "Source Han Sans TC", "PingFang TC",
     "Microsoft JhengHei", system-ui, sans-serif;
+}
+
+/* ——— 書架 ——— */
+
+.shelf {
+  display: grid;
+  gap: 1rem;
+  margin: 1.25rem auto 0.5rem;
+  width: min(40rem, calc(100% - 2rem));
+}
+
+.book {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.05rem 1.1rem;
+  box-shadow: var(--shadow);
+  color: inherit;
+}
+
+.book-main {
+  display: flex;
+  gap: 0.95rem;
+  align-items: stretch;
+  color: inherit;
+}
+
+a.book-main:active {
+  opacity: 0.92;
+}
+
+.book-cover {
+  flex: 0 0 4.4rem;
+  width: 4.4rem;
+  min-height: 6.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 4px 8px 8px 4px;
+  writing-mode: vertical-rl;
+  letter-spacing: 0.28em;
+  text-indent: 0.28em;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.book-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.book-title {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.35;
+}
+
+.book-author {
+  display: block;
+  color: var(--muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
+
+.book-meta {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-family: "Noto Sans CJK TC", "Source Han Sans TC", "PingFang TC",
+    "Microsoft JhengHei", system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.book-badge {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 0.45rem;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-family: "Noto Sans CJK TC", "Source Han Sans TC", "PingFang TC",
+    "Microsoft JhengHei", system-ui, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+}
+
+.book-progress {
+  margin-top: 0.95rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+
+.book-progress[hidden] {
+  display: none;
+}
+
+.book-progress .kicker {
+  display: block;
+  font-family: "Noto Sans CJK TC", "Source Han Sans TC", "PingFang TC",
+    "Microsoft JhengHei", system-ui, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.book-progress .card-title {
+  display: block;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+.book.is-soon {
+  opacity: 0.78;
+}
+
+.book.is-soon .book-cover {
+  border-style: dashed;
+  background: transparent;
+}
+
+.book.is-soon .book-main {
+  cursor: default;
+}
+
+@media (min-width: 720px) {
+  .shelf {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
 }
 
 /* ——— 閱讀頁 ——— */
